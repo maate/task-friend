@@ -80,12 +80,13 @@ If errors are important to you, use the `-b` (for [b]reak). This breaks the task
 
 Want to store the output in a file? Windows is your friend. Use `>` to create a new file and `>>` to append to an existing (will create a new if it doesn't exist).
 
-Output from your tasks is only (and always) recorded when debugging is enabled:
+**Example:**
+
+    task-friend.exe -i input.txt > log.txt
+
+Note that Standard Output from your tasks is only (and always) recorded when debugging is enabled:
 
     [11:00 PM] Task 10 says: Hello World!
-
-**Example:**
-    task-friend.exe -i input.txt > log.txt
 
 ### Dates and Times
 Task Friend is international - he uses UTC formated date times, so be aware that the hours might not match what you got in the Windows task bar.
