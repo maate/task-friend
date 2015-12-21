@@ -1,9 +1,5 @@
 ﻿# Task Friend
-Task Friend runs concurrent tasks.
-
-You specify a file with tasks as input, and Task Friend runs them concurrently and in a friendly manner.
-
-By default, Task Friend will run 10 tasks concurrently, but you can overwrite this behavior as you like.
+You specify a file with tasks as input, and Task Friend runs them in a concurrent and friendly manner.
 
 ## Quick start
 
