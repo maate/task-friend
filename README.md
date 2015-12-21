@@ -50,7 +50,6 @@ In the example above, Task Friend expects lazy-friend.exe to be placed next to T
 Task Friend will process each task at a time and pass the parameters to the process.
 
 Task Friend accepts fully qualified paths to the file system such as:
-**myinput.txt**
 
     c:\foo\bar\lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 1
     c:\foo\bar\lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 2
