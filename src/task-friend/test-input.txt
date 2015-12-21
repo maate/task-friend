@@ -1,0 +1,10 @@
+﻿lazy-friend.exe ERROR
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 2
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 3
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 4
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 5
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 6
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 7
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 8
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 9
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 10
