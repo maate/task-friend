@@ -8,6 +8,7 @@ By default, Task Friend will run 10 tasks concurrently, but you can overwrite th
 ## Quick start
 
 **task-friend.exe --help**
+
     Usage: task-friend.exe -i c:\myinput.txt -c 10 [-d] [-s] [-b] [-t milliseconds]
 
     Runs tasks from an input file (-i) on a number of concurrent tasks (-c) until
@@ -36,6 +37,7 @@ By default, Task Friend will run 10 tasks concurrently, but you can overwrite th
 You feed Task Friend with an input file where each line is a task that points to an executable and an optional number of parameters - just as you would do in a command prompt. For example:
 
 **myinput.txt**
+
     lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 1
     lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 2
     lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 3
@@ -53,6 +55,7 @@ Task Friend will process each task at a time and pass the parameters to the proc
 
 Task Friend accepts fully qualified paths to the file system such as:
 **myinput.txt**
+
     c:\foo\bar\lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 1
     c:\foo\bar\lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 2
     c:\foo\bar\lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 3
