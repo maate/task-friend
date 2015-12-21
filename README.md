@@ -74,11 +74,11 @@ Task Friend is the silent type. Doesn't say much. But by using the `-d` option (
 
 But you can also shut him up. If you really want to do this, use the `-s` option (s for [s]ilent -- or if you like -- [s]hut up)
 
-Now, Task Friend doesn't always listen to you. If something really weird happens, he won't shut up, but he'll make sure to tell you about it - you know the type, right? For example, if one of your tasks returns an error.
+Now, Task Friend doesn't always listen to you. If something really weird happens, he won't shut up, but he'll make sure to tell you about it - you know the type, right? For example, if one of your tasks returns an error, Task Friend will log this to the console even if you are not in debug mode.
 
-If errors are important to you as well, use the `-b` (for [b]reak) to break task processing when there's an error in one of your tasks.
+If errors are important to you, use the `-b` (for [b]reak). This breaks the task processing when there's an error in one of your tasks. Task Friend prints the error message, kills running tasks, stops further task processing, and exists immediately.
 
-Want to store the output in a file? Windows is your friend here. Use `>` to create a new file and `>>` to append to an existing (will create a new if it doesn't exist).
+Want to store the output in a file? Windows is your friend. Use `>` to create a new file and `>>` to append to an existing (will create a new if it doesn't exist).
 
 Output from your tasks is only (and always) recorded when debugging is enabled:
 
