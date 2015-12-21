@@ -7,7 +7,7 @@ By default, Task Friend will run 10 tasks concurrently, but you can overwrite th
 
 ## Quick start
 
-**task-friend.exe --help**
+Run `task-friend.exe --help` to see this usage message:
 
     Usage: task-friend.exe -i c:\myinput.txt -c 10 [-d] [-s] [-b] [-t milliseconds]
 
