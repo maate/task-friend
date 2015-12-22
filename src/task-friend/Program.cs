@@ -51,7 +51,7 @@ namespace task_friend {
         return;
       }
 
-      _logger = new Logger( options.Debug, options.Silent );
+      _logger = new Logger( options );
 
       var commands = GetCommands( options );
 
@@ -75,10 +75,8 @@ namespace task_friend {
           if ( TryBreakOnErrors( options ) ) {
             break;
           }
-          else {
-            Console.WriteLine( "    I'll ignore this one, but continue with the other tasks." );
-            continue;
-          }
+          Console.WriteLine( "    I'll ignore this one, but continue with the other tasks." );
+          continue;
         }
         var process = CreateProcess( cmd );
         var task = new Task( () => RunProcess( process, options ), cancellationToken, TaskCreationOptions.LongRunning );
@@ -176,8 +174,18 @@ namespace task_friend {
       _processes.Add( process );
       process.Start();
       if ( !process.WaitForExit( options.Timeout ) ) {
-        Console.WriteLine( "Task {0} timed out after {1}ms", Task.CurrentId, sw.ElapsedMilliseconds );
-        _logger.AddDebug( "Consider increasing the timeout by adding a -t parameter to task-friend. Run task-friend.exe --help for more info." );
+        lock ( Mutex_TaskScope ) {
+          Console.WriteLine(
+            "[{0}] Task {1} timed out after {2}ms",
+            DateTime.UtcNow.ToShortTimeString(),
+            Task.CurrentId,
+            sw.ElapsedMilliseconds );
+          _logger.AddDebugTimeout(
+            "[{0}] Process Information on Task {1}:", DateTime.UtcNow.ToShortTimeString(), Task.CurrentId );
+          _logger.AddDebugTimeout( "        Executable {0}", process.StartInfo.FileName );
+          _logger.AddDebugTimeout( "        Parameters {0}", process.StartInfo.Arguments );
+        }
+        _logger.AddDebug( "        Consider increasing the timeout by adding a -t parameter to task-friend. Run task-friend.exe --help for more info." );
         if ( TryBreakOnErrors( options ) ) {
           return;
         }
@@ -196,7 +204,7 @@ namespace task_friend {
       }
 
       _numberOfThreads--;
-      _processes.Remove( process );
+      //_processes.Remove( process );
       _logger.AddDebug( "[{2}] Finished task {0} in {1}ms", Task.CurrentId, sw.ElapsedMilliseconds, DateTime.UtcNow.ToShortTimeString() );
     }
 

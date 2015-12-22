@@ -5,27 +5,28 @@ You specify a file with tasks as input, and Task Friend runs them in a concurren
 
 Run `task-friend.exe --help` to see this usage message:
 
-    Usage: task-friend.exe -i c:\myinput.txt -c 10 [-d] [-s] [-b] [-t milliseconds]
-
+    Usage: task-friend.exe -i c:\myinput.txt -c 10 [-d] [-s] [-b] [-t milliseconds] [--debug-timeout]
+	
     Runs tasks from an input file (-i) on a number of concurrent tasks (-c) until
     all tasks have been processed
-
+    
       -i, --input         Required. Input file to be processed. Each line in the
                           file should be a command line input.
-
-      -c, --concurrent    (Default: 10) Number of concurrent tasks (default is 10)
-
-      -t, --timeout       (Default: 60000) Timeout in milliseconds (default is
-                          60000)
-
+    
+      -c, --concurrent    (Default: 10) Number of concurrent tasks
+    
+      -t, --timeout       (Default: 60000) Timeout in milliseconds
+    
       -d, --debug         Outputs debug information
-
+    
+      --debug-timeout     Outputs timeout information
+    
       -s, --silent        No command line output
-
+    
       -b, --break         (Default: False) Break on errors - when enabled Task
                           Friend don't resume task processing if a process returns
                           an error (default is false)
-
+    
       --help              Display this help screen.
 
 ## How it works
