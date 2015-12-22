@@ -166,7 +166,7 @@ namespace task_friend {
 
     private static void RunProcess( Process process, Options options ) {
       lock ( Mutex_TaskScope ) {
-        _logger.AddDebug( "[{0}] Starting process on thread {1}", DateTime.UtcNow.ToShortTimeString(), Task.CurrentId );
+        _logger.AddDebug( "[{0}] Starting process of task {1}", DateTime.UtcNow.ToShortTimeString(), Task.CurrentId );
         _logger.AddDebug( "        Executable {0}", process.StartInfo.FileName );
         _logger.AddDebug( "        Parameters {0}", process.StartInfo.Arguments );
       }
@@ -196,7 +196,7 @@ namespace task_friend {
 
     private static bool TryBreakOnErrors( Options options ) {
       if ( options.BreakOnErrors ) {
-        Console.WriteLine( "[{0}] Break On Errors is enabled. Task Friend exists.", DateTime.UtcNow.ToShortTimeString() );
+        Console.WriteLine( "[{0}] Break On Errors is enabled. Task Friend exits.", DateTime.UtcNow.ToShortTimeString() );
         _tokenSource.Cancel( true );
       }
       return options.BreakOnErrors;
