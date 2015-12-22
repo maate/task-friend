@@ -175,7 +175,13 @@ namespace task_friend {
 
       _processes.Add( process );
       process.Start();
-      process.WaitForExit( options.Timeout );
+      if ( !process.WaitForExit( options.Timeout ) ) {
+        Console.WriteLine( "Task {0} timed out after {1}ms", Task.CurrentId, sw.ElapsedMilliseconds );
+        _logger.AddDebug( "Consider increasing the timeout by adding a -t parameter to task-friend. Run task-friend.exe --help for more info." );
+        if ( TryBreakOnErrors( options ) ) {
+          return;
+        }
+      }
 
       while ( !process.StandardOutput.EndOfStream ) {
         string line = process.StandardOutput.ReadLine();
