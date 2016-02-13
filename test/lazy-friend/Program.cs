@@ -10,7 +10,7 @@ namespace lazy_friend {
       if ( args.Length > 0 && args[0] == "ERROR" ) {
         throw new InvalidOperationException( "Throwing an error - like you told me!" );
       }
-      int gimmeanumber = new Random().Next( 100, 10000 );
+      int gimmeanumber = new Random().Next( 10, 100 );
       Console.Write( "Running lazy-friend with arguments " );
       var argsString = "";
       foreach ( string arg in args ) {

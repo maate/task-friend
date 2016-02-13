@@ -8,3 +8,4 @@ lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 7
 lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 8
 lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 9
 lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 10
+lazy-friend.exe -p1 parameter1 -p2 parameter2 --line 11
