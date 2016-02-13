@@ -172,8 +172,8 @@ namespace task_friend {
       Stopwatch sw = Stopwatch.StartNew();
 
       _processes.Add( process );
-      process.BeginOutputReadLine();
       process.Start();
+      process.BeginOutputReadLine();
 
       if ( !process.WaitForExit( options.Timeout ) ) {
         lock ( Mutex_TaskScope ) {
