@@ -8,6 +8,8 @@ namespace task_friend {
     bool Flush { get; }
 
     bool Debug { get; }
+
+    bool DebugTimeout { get; }
   }
 
   public class Options : ILogOptions {
