@@ -172,7 +172,9 @@ namespace task_friend {
       Stopwatch sw = Stopwatch.StartNew();
 
       _processes.Add( process );
+      process.BeginOutputReadLine();
       process.Start();
+
       if ( !process.WaitForExit( options.Timeout ) ) {
         lock ( Mutex_TaskScope ) {
           Console.WriteLine(
@@ -189,11 +191,6 @@ namespace task_friend {
         if ( TryBreakOnErrors( options ) ) {
           return;
         }
-      }
-
-      while ( !process.StandardOutput.EndOfStream ) {
-        string line = process.StandardOutput.ReadLine();
-        _logger.AddDebug( "[{0}] Task {1} says: {2}", DateTime.UtcNow.ToShortTimeString(), Task.CurrentId, line );
       }
 
       if ( process.ExitCode != 0 && !_tokenSource.IsCancellationRequested ) {
@@ -233,6 +230,8 @@ namespace task_friend {
       var process = new Process();
       process.StartInfo = processStartInfo;
       process.EnableRaisingEvents = true;
+      process.OutputDataReceived +=
+        ( sender, args ) => _logger.AddDebug( "[{0}] Task {1} says: {2}", DateTime.UtcNow.ToShortTimeString(), process.StartInfo.FileName, args.Data );
       return process;
     }
 
