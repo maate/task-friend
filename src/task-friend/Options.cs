@@ -2,9 +2,16 @@
 using CommandLine.Text;
 
 namespace task_friend {
-  public class Options {
-    [Option( 'i', "input", Required = true,
-      HelpText = "Input file to be processed. Each line in the file should be a command line input." )]
+  public interface ILogOptions {
+    bool Silent { get; }
+
+    bool Flush { get; }
+
+    bool Debug { get; }
+  }
+
+  public class Options : ILogOptions {
+    [Option( 'i', "input", Required = true, HelpText = "Input file to be processed. Each line in the file should be a command line input." )]
     public string InputFile { get; set; }
 
     [Option( 'c', "concurrent", Required = false, HelpText = "Number of concurrent tasks", DefaultValue = 10)]
@@ -22,6 +29,9 @@ namespace task_friend {
     [Option( 's', "silent", Required = false, HelpText = "No command line output" )]
     public bool Silent { get; set; }
 
+    [Option( 'f', "flush", Required = false, HelpText = "Force continuous flushing to standard output to get fast response from tasks", DefaultValue = false )]
+    public bool Flush { get; set; }
+
     [Option( 'b', "break", Required = false,
       HelpText =
         "Break on errors - when enabled Task Friend don't resume task processing if a process returns an error (default is false)",
@@ -36,7 +46,7 @@ namespace task_friend {
         AdditionalNewLineAfterOption = true,
         AddDashesToOption = true
       };
-      help.AddPreOptionsLine( "Usage: task-friend.exe -i c:\\myinput.txt -c 10 [-d] [-s] [-b] [-t milliseconds] [--debug-timeout]" );
+      help.AddPreOptionsLine( "Usage: task-friend.exe -i c:\\myinput.txt -c 10 [-d] [-s] [-b] [-f] [-t milliseconds] [--debug-timeout]" );
       help.AddPreOptionsLine(
         "Runs tasks from an input file (-i) on a number of concurrent tasks (-c) until all tasks have been processed" );
       help.AddOptions( this );

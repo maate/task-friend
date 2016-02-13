@@ -2,32 +2,35 @@
 
 namespace task_friend.Logging {
   internal class Logger {
-    private readonly bool _debug;
+    private readonly ILogOptions _options;
 
-    private readonly bool _silent;
-    private bool _debugTimeout;
-
-    public Logger( Options options ) {
-      _debug = options.Debug;
-      _silent = options.Silent;
-      _debugTimeout = options.DebugTimeout;
+   public Logger( ILogOptions options ) {
+      _options = options;
     }
 
     public void AddDebug( string message, params object[] args ) {
-      if ( _debug && !_silent ) {
+      if ( _options.Debug && !_options.Silent ) {
         Console.WriteLine( message, args );
+        Flush();
       }
     }
 
     public void AddDebugTimeout( string message, params object[] args ) {
-      if ( ( _debug || _debugTimeout ) && !_silent ) {
+      if ( ( _options.Debug || _options.DebugTimeout ) && !_options.Silent ) {
         Console.WriteLine( message, args );
       }
     }
 
     public void Log( string message, params object[] args ) {
-      if ( !_silent ) {
+      if ( !_options.Silent ) {
         Console.WriteLine( message, args );
+        Flush();
+      }
+    }
+
+    private void Flush() {
+      if ( _options.Flush ) {
+        Console.Out.Flush();
       }
     }
   }
